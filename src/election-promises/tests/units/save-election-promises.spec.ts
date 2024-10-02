@@ -1,4 +1,5 @@
 import { SaveElectionPromiseAnswerCommand } from "../../application/command/save/save-election-promise-answer.command";
+import { SaveElectionPromiseAnswerHandler } from "../../application/command/save/save-election-promise-answer.handler";
 import { SaveElectionPromiseAnswerResponse } from "../../application/command/save/save-election-promise-answer.response";
 import { ElectionPromise } from "../../domain/election-promise.entity";
 import { ElectionPromisePriority } from "../../domain/enums/election-promise-priority.enum";
@@ -12,6 +13,7 @@ describe("Election promises save ", ()=>{
 
     beforeEach(()=>{
         electionPromisesRepository = new InMemoryElectionPromisesRepository();
+        electionPromisesResponsesRepository = new InMemoryElectionPromisesAnswerRepository();
     })
 
     test("can evealuate an election promise", ()=>{
@@ -33,13 +35,15 @@ describe("Election promises save ", ()=>{
 
         expect(response.isSaved).toBe(true);
         expect(response.answerId).not.toBeNull();
+        expect(electionPromisesResponsesRepository.answers.get(response.answerId)).not.toBeNull()
     })
 
     function saveElectionPromise(command:SaveElectionPromiseAnswerCommand):SaveElectionPromiseAnswerResponse{
-        return {
-            isSaved:true,
-            answerId:""
-        }
+        const saveElectionPromiseAnswerHandler = new SaveElectionPromiseAnswerHandler(
+            electionPromisesResponsesRepository
+        )
+        const response = saveElectionPromiseAnswerHandler.handle(command);
+        return response
     }
 
     function saveInitDataInMemory(question:ElectionPromise){
