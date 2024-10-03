@@ -17,7 +17,7 @@ describe("Feature save election promise answer",()=>{
             ElectionPromisePriority.NORMAL,
             PromiseAnswer.YES
         )
-        repository.saveElectionPromiseAnwer(electionPromiseAnswer);
+        repository.saveElectionPromiseAnswer(electionPromiseAnswer);
         const testElectionPromiseAnswer  = ElectionPromiseAnswerModel.whereUuid(
             electionPromiseAnswer.toPrimitive().answerId
         )

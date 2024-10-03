@@ -2,5 +2,5 @@ import { ElectionPromiseAnswer, ElectionPromiseAnswerDto } from "../election-pro
 
 export interface ElectionPromisesAnswerRepository {
     ofId:(electionPromiseId:string)=> ElectionPromiseAnswerDto|null
-    saveElectionPromiseAnwer:(electionPromiseAnswer:ElectionPromiseAnswer)=>void
+    saveElectionPromiseAnswer:(electionPromiseAnswer:ElectionPromiseAnswer)=>void
 }

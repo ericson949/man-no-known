@@ -9,7 +9,7 @@ export class InMemoryElectionPromisesAnswerRepository implements ElectionPromise
     public ofId(electionPromiseId:string): null|ElectionPromiseAnswerDto {
         return this.answers.get(electionPromiseId)?.toPrimitive()??null   
     }
-    public saveElectionPromiseAnwer (electionPromiseAnswer: ElectionPromiseAnswer){
+    public saveElectionPromiseAnswer (electionPromiseAnswer: ElectionPromiseAnswer){
         this.answers.set(electionPromiseAnswer.toPrimitive().answerId, 
         electionPromiseAnswer
     )

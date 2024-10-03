@@ -16,7 +16,7 @@ export class SaveElectionPromiseAnswerHandler {
         electionPromiseId,electorId,
         command.priority,command.answer
     )
-    this.electionPromiseRepo.saveElectionPromiseAnwer(electionPromiseAnswer)
+    this.electionPromiseRepo.saveElectionPromiseAnswer(electionPromiseAnswer)
     return {
       isSaved:true,
       answerId:electionPromiseAnswer.toPrimitive().answerId
